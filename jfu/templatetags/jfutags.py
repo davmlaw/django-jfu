@@ -1,7 +1,7 @@
-from django.core.urlresolvers import reverse
+import django
 from django.template import Library, Context, loader
 from django.template.context_processors import csrf
-import django
+from django.urls import reverse
 
 register = Library()
 
@@ -47,4 +47,4 @@ def jfu(
         if not isinstance(context, Context):
             context = Context(context)
 
-    return t.render(context)
+    return t.render(context.flatten())
