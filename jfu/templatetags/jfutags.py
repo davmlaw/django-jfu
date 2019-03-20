@@ -1,6 +1,5 @@
 import django
 from django.template import Library, Context, loader
-from django.template.context_processors import csrf
 from django.urls import reverse
 
 register = Library()
@@ -30,11 +29,6 @@ def jfu(
             upload_handler_name, args=args, kwargs=kwargs
         ),
     })
-
-    # Use the request context variable, injected
-    # by django.core.context_processors.request,
-    # to generate the CSRF token.
-    context.update(csrf(context.get('request')))
 
     t = loader.get_template(template_name)
 
